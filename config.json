@@ -1,0 +1,7 @@
+{
+  "PhalaServiceUrl": "https://phalaserver.cyberjungle.io",
+  "CyberJunglePhalaAccount": "Replace with Cyberjungle phala account",
+  "CyberJunglePhalaKey": "Replace with Cyberjungle phala key",
+  "PhalaServicesBaseUrl": "http://localhost",
+  "UpdateInterval": 60
+}

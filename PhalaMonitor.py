@@ -6,10 +6,14 @@ import docker
     
 #url = "http://localhost:9933/system_syncState"
 def getPhala(baseUrl):
-    url = baseUrl + ":9933/system_syncState"
+    url = baseUrl + ":9933"
     print(url)
+    dt = {
+        "id":1, "jsonrpc":"2.0", "method": "system_syncState", "params":[]
+    }
+    data_json = json.dumps(dt)
     headers = {'Content-type': 'application/json'}
-    r = requests.post(url, headers=headers,timeout=30)
+    r = requests.post(url, data=data_json, headers=headers,timeout=30)
     print(r)
     ph = r.json()["result"]
 
@@ -18,9 +22,13 @@ def getPhala(baseUrl):
 #url = "http://localhost:9934/system_syncState"
 def getPolkadot(baseUrl):
     url = baseUrl + ":9934/system_syncState"
+    dt = {
+        "id":1, "jsonrpc":"2.0", "method": "system_syncState", "params":[]
+    }
+    data_json = json.dumps(dt)
     headers = {'Content-type': 'application/json'}
 
-    r = requests.post(url, headers=headers)
+    r = requests.post(url, data=data_json, headers=headers)
 
     Polkadot = r.json()["result"]
     
@@ -60,7 +68,7 @@ def getPhalaServices():
 
 
     return phala
-#print(getPhala("http://192.168.5.40"))
+#print(getPhala("http://10.1.1.210"))
 #print(str(getPhalaServices()))
 
 

@@ -29,7 +29,7 @@ while True:
     print(result)
 
     data_json = json.dumps(result)
-    url = PhalaServiceUrl + "/miner/updateMiner"
+    url = PhalaServiceUrl + "/worker/updateWorker"
     headers = {'Content-type': 'application/json','monitor_id':CyberJunglePhalaAccount,'monitor_key':CyberJunglePhalaKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)

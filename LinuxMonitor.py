@@ -4,7 +4,10 @@ import requests
 import json
 import platform
 import time
+import socket
 
+def getIpAddress():
+    return socket.gethostbyname(socket.gethostname())  
 
 # get the total number of cores.
 def getCores():
@@ -48,6 +51,7 @@ def getLinuxData():
         "Critical_Temp": ctemp,
         "CPULoad": getCpuPercent(),
         "total_ram": totalram,
-        "used_ram": used
+        "used_ram": used,
+        "ip_address": getIpAddress()
     }
     return result

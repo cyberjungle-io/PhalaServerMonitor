@@ -2,6 +2,7 @@ import requests
 import json
 import LinuxMonitor
 import PhalaMonitor
+import PhalaBlockChain
 import time
 
 
@@ -15,16 +16,21 @@ CyberJunglePhalaAccount = phalaConfig["CyberJunglePhalaAccount"]
 CyberJunglePhalaKey = phalaConfig["CyberJunglePhalaKey"]
 PhalaServicesBaseUrl = phalaConfig["PhalaServicesBaseUrl"]
 UpdateInterval = phalaConfig["UpdateInterval"]
+GasAccount = phalaConfig["GasAccount"]
 
 while True:
-    
+    gas = 0
+    lockedValue = 0
+    if (GasAccount != ""):
+        gas,lockedValue = PhalaBlockChain.getAccountBalance(GasAccount)
     result = {
         "HostName": LinuxMonitor.getHostName(),
         "PhalaData": PhalaMonitor.getPhala(PhalaServicesBaseUrl),
         "PolkadotData": PhalaMonitor.getPolkadot(PhalaServicesBaseUrl),
         "Pruntime":PhalaMonitor.getPruntime(PhalaServicesBaseUrl),
         "DockerContainers": PhalaMonitor.getPhalaServices(),
-        "LinuxData": LinuxMonitor.getLinuxData()
+        "LinuxData": LinuxMonitor.getLinuxData(),
+        "Gas": gas
 
     }
     print(result)

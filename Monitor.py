@@ -23,7 +23,8 @@ while True:
         "PhalaData": PhalaMonitor.getPhala(PhalaServicesBaseUrl),
         "PolkadotData": PhalaMonitor.getPolkadot(PhalaServicesBaseUrl),
         "Pruntime":PhalaMonitor.getPruntime(PhalaServicesBaseUrl),
-        "DockerContainers": PhalaMonitor.getPhalaServices()
+        "DockerContainers": PhalaMonitor.getPhalaServices(),
+        "LinuxData": LinuxMonitor.getLinuxData()
 
     }
     print(result)

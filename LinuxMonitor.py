@@ -53,12 +53,12 @@ def getHostName():
     return platform.node()
 
 def getLinuxData():
-    temp, ctemp = getCpuTemp()
+    #temp, ctemp = getCpuTemp()
     used, totalram = getRAM()
     result = {
         "cores": getCores(),
-        "CPU_Temp": temp,
-        "Critical_Temp": ctemp,
+        "CPU_Temp": 0,
+        "Critical_Temp": 0,
         "CPULoad": getCpuPercent(),
         "total_ram": totalram,
         "used_ram": used,

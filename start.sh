@@ -1,1 +1,1 @@
-nohup python3 monitor.py &
+nohup python3 Monitor.py &

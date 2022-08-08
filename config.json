@@ -3,5 +3,6 @@
   "CyberJunglePhalaAccount": "Replace with Cyberjungle phala account",
   "CyberJunglePhalaKey": "Replace with Cyberjungle phala key",
   "PhalaServicesBaseUrl": "http://localhost",
+  "GasAccount":"",
   "UpdateInterval": 60
 }

@@ -13,9 +13,12 @@ def getPhala(baseUrl):
     }
     data_json = json.dumps(dt)
     headers = {'Content-type': 'application/json'}
-    r = requests.post(url, data=data_json, headers=headers,timeout=30)
-    print(r)
-    ph = r.json()["result"]
+    try:
+        r = requests.post(url, data=data_json, headers=headers,timeout=30)
+        print(r)
+        ph = r.json()["result"]
+    except:
+        ph = {}
 
     return ph
 
@@ -27,10 +30,12 @@ def getPolkadot(baseUrl):
     }
     data_json = json.dumps(dt)
     headers = {'Content-type': 'application/json'}
+    try:
+        r = requests.post(url, data=data_json, headers=headers)
 
-    r = requests.post(url, data=data_json, headers=headers)
-
-    Polkadot = r.json()["result"]
+        Polkadot = r.json()["result"]
+    except:
+        Polkadot = {}
     
     return Polkadot
 

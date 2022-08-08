@@ -6,7 +6,7 @@ import PhalaBlockChain
 import time
 
 
-with open("config.json") as file:
+with open("./config/config.json") as file:
     phalaConfig = json.load(file)
 
 print(phalaConfig)

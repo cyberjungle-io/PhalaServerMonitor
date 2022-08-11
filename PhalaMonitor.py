@@ -44,11 +44,13 @@ def getPolkadot(baseUrl):
 #url = "http://localhost:8000/get_info"
 def getPruntime(baseUrl):
     url = baseUrl + ":8000/get_info"
-    headers = {'Content-type': 'application/json'}    
-    r = requests.get(url, headers=headers)    
+    headers = {'Content-type': 'application/json'}  
+    try:  
+        r = requests.get(url, headers=headers)    
        
-    tmpjson = json.loads(r.json()["payload"])
-     
+        tmpjson = json.loads(r.json()["payload"])
+    except:
+        tmpjson = {} 
     return tmpjson
 
 

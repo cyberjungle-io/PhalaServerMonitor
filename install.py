@@ -1,3 +1,4 @@
+import subprocess
 import json
 import socket
 import os
@@ -75,6 +76,7 @@ if monitor_key:
             response.raise_for_status()
             response_data = response.json()
             is_valid_key = response_data.get('isValidKey', False)
+
     except requests.exceptions.RequestException as e:
         print("Error occurred while validating monitor key:", e)
         monitor_key = None

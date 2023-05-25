@@ -1,8 +1,10 @@
 {
-  "PhalaServiceUrl": "https://phalaserver.cyberjungle.io",
-  "CyberJunglePhalaAccount": "Replace with Cyberjungle phala account",
-  "CyberJunglePhalaKey": "Replace with Cyberjungle phala key",
-  "PhalaServicesBaseUrl": "http://localhost",
-  "GasAccount":"",
-  "UpdateInterval": 60
+    "monitorType": "solo",
+    "serviceName": "jimserver",
+    "hostName": "jimserver",
+    "monitorUrl": "http://localhost:5002",
+    "monitorKey": "ee8839ae-2920-11ec-9621-0242ac130002",
+    "interval": 60,
+    "nodeBaseUrl": "http://localhost",
+    "gasAccount": "447keN31sFDpAShoK1KMpVe5ofjE1zsB266RAZXXTM3oiWVj"
 }

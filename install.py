@@ -62,17 +62,23 @@ if monitor_key:
     payload = {
         'monitorKey': monitor_key
     }
-    response = requests.post(validation_url, json=payload)
-    response_data = response.json()
-    is_valid_key = response_data.get('isValidKey', False)
-
-    while not is_valid_key:
-        print("Invalid monitor key. Please enter a valid key.")
-        monitor_key = input("Enter the monitor key (default: {}): ".format(config.get('monitorKey', ''))) or config.get('monitorKey')
-        payload['monitorKey'] = monitor_key
+    try:
         response = requests.post(validation_url, json=payload)
+        response.raise_for_status()
         response_data = response.json()
         is_valid_key = response_data.get('isValidKey', False)
+
+        while not is_valid_key:
+            print("Invalid monitor key. Please enter a valid key.")
+            monitor_key = input("Enter the monitor key (default: {}): ".format(config.get('monitorKey', ''))) or config.get('monitorKey')
+            payload['monitorKey'] = monitor_key
+            response = requests.post(validation_url, json=payload)
+            response.raise_for_status()
+            response_data = response.json()
+            is_valid_key = response_data.get('isValidKey', False)
+    except requests.exceptions.RequestException as e:
+        print("Error occurred while validating monitor key:", e)
+        monitor_key = None
 
 # Prompt for interval
 interval = input("Enter the interval in seconds (default: 60): ") or str(config.get('interval', 60))
@@ -100,22 +106,29 @@ if monitor_type == "solo":
         payload = {
             'accountId': gas_account
         }
-        response = requests.post(validation_url, json=payload)
-        response_data = response.json()
-        is_valid_account = response_data.get('isValidAccount', False)
-
-        while not is_valid_account:
-            print("Invalid gas account. Please enter a valid account.")
-            gas_account = input("Enter the gas account (default: {}): ".format(config.get('gasAccount', ''))) or config.get('gasAccount')
-            payload['accountId'] = gas_account
+        try:
             response = requests.post(validation_url, json=payload)
+            response.raise_for_status()
             response_data = response.json()
             is_valid_account = response_data.get('isValidAccount', False)
 
-        pha_amount = response_data.get('value')
-        if is_valid_account and pha_amount:
-            print("Gas account is valid.")
-            print("PHA amount: {}".format(pha_amount))
+            while not is_valid_account:
+                print("Invalid gas account. Please enter a valid account.")
+                gas_account = input("Enter the gas account (default: {}): ".format(config.get('gasAccount', ''))) or config.get('gasAccount')
+                payload['accountId'] = gas_account
+                response = requests.post(validation_url, json=payload)
+                response.raise_for_status()
+                response_data = response.json()
+                is_valid_account = response_data.get('isValidAccount', False)
+
+            pha_amount = response_data.get('value')
+            if is_valid_account and pha_amount:
+                print("Gas account is valid.")
+                print("PHA amount: {}".format(pha_amount))
+
+        except requests.exceptions.RequestException as e:
+            print("Error occurred while validating gas account:", e)
+            gas_account = None
 
     config["nodeBaseUrl"] = node_base_url
     config["gasAccount"] = gas_account

@@ -29,7 +29,7 @@ def get_default_monitor_url():
 def get_default_host_name():
     return socket.gethostname()
 
-# Load existing configuration from config.json if it exists
+# Check if config.json exists and load existing configuration if it does
 config = {}
 if os.path.exists('config.json'):
     with open('config.json', 'r') as config_file:
@@ -94,9 +94,6 @@ config = {
 if monitor_type == "solo":
     node_base_url = input("Enter the node base URL (default: {}): ".format(config.get('nodeBaseUrl', 'http://localhost'))) or config.get('nodeBaseUrl', 'http://localhost')
     gas_account = input("Enter the gas account (default: {}): ".format(config.get('gasAccount', ''))) or config.get('gasAccount')
-
-    if not gas_account:
-        gas_account = config.get('gasAccount')
 
     if gas_account:
         validation_url = monitor_url.rstrip('/') + '/servermonitor/checkAccount'

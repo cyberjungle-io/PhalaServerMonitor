@@ -149,4 +149,4 @@ print("Configuration saved to config.json.")
 auto_start = input("Do you want to have this service auto start? (Y/N) (default: Y): ").lower() or 'y'
 if auto_start == 'y':
     # Execute the install_autoboot.sh script
-    subprocess.run(['./install_autoboot.sh'])
+    subprocess.call('./install_autoboot.sh', shell = True)

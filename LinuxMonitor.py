@@ -26,15 +26,21 @@ def getCores():
 
 # gets the hightest core temperature and critical temperature
 def getCpuTemp():
+
     temp = 0
     maxtemp = 0
     criticaltemp = 0
-    for tmp in psutil.sensors_temperatures()["coretemp"]:
-           #	print(tmp[1])
-        if tmp[1] > temp:
-            temp = tmp[1]
-        if tmp[3] > criticaltemp:
-            criticaltemp = tmp[3]
+    try:
+        for tmp in psutil.sensors_temperatures()["coretemp"]:
+            #	print(tmp[1])
+            if tmp[1] > temp:
+                temp = tmp[1]
+            if tmp[3] > criticaltemp:
+                criticaltemp = tmp[3]
+    except:
+        temp = 0
+        maxtemp = 0
+        criticaltemp = 0
 
     return temp, criticaltemp
 

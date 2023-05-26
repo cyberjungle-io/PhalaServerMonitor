@@ -86,7 +86,8 @@ interval = input("Enter the interval in seconds (default: 60): ") or str(config.
 while not validate_interval(interval):
     print("Invalid interval. Please enter a positive integer value.")
     interval = input("Enter the interval in seconds (default: 60): ") or str(config.get('interval', 60))
-
+node_base_url = input("Enter the node base URL (default: {}): ".format(config.get('nodeBaseUrl', 'http://localhost'))) or config.get('nodeBaseUrl', 'http://localhost')
+   
 # Create the configuration dictionary
 config = {
     "monitorType": monitor_type,
@@ -94,6 +95,7 @@ config = {
     "hostName": host_name,
     "monitorUrl": monitor_url,
     "monitorKey": monitor_key,
+    "nodeBaseUrl": node_base_url,
     "interval": int(interval)
 }
 
@@ -134,10 +136,6 @@ if monitor_type == "solo":
     config["nodeBaseUrl"] = node_base_url
     config["gasAccount"] = gas_account
 
-# Additional data collection for prb monitor type
-if monitor_type == "prb":
-    node_base_url = input("Enter the node base URL (default: {}): ".format(config.get('nodeBaseUrl', 'http://localhost'))) or config.get('nodeBaseUrl', 'http://localhost')
-    config["nodeBaseUrl"] = node_base_url
 
 # Save the configuration to a JSON file
 with open('config.json', 'w') as config_file:

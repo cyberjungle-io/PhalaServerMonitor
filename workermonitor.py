@@ -11,46 +11,32 @@ with open("config.json") as file:
     phalaConfig = json.load(file)
 
 print(phalaConfig)
+monitorType = phalaConfig["monitorType"]
+serviceName = phalaConfig["serviceName"]
+hostName = phalaConfig["hostName"]
+monitorUrl = phalaConfig["monitorUrl"]
+monitorKey = phalaConfig["monitorKey"]
+interval = phalaConfig["interval"]
+nodeBaseUrl = phalaConfig["nodeBaseUrl"]
 
-PhalaServiceUrl = phalaConfig["PhalaServiceUrl"]
-CyberJunglePhalaAccount = phalaConfig["CyberJunglePhalaAccount"]
-CyberJunglePhalaKey = phalaConfig["CyberJunglePhalaKey"]
-PhalaServicesBaseUrl = phalaConfig["PhalaServicesBaseUrl"]
-UpdateInterval = phalaConfig["UpdateInterval"]
-GasAccount = phalaConfig["GasAccount"]
 
 while True:
-    gas = 0
-    lockedValue = 0
-    if (GasAccount != ""):
-        gas,lockedValue = PhalaBlockChain.getAccountBalance(GasAccount)
+    
     result = {
-        "HostName": "phala1",
-        "PhalaData": PhalaMonitor.getPhala(PhalaServicesBaseUrl),
-        "PolkadotData": PhalaMonitor.getPolkadot(PhalaServicesBaseUrl),
-        "Pruntime":PhalaMonitor.getPruntime(PhalaServicesBaseUrl),
-        "DockerContainers": {},
-        "LinuxData": {},
-        "Gas": gas
-
-    }
-
-    result = {
+        "monitorType": monitorType,
         "HostName": LinuxMonitor.getHostName(),
-        "PhalaData": PhalaMonitor.getPhala(PhalaServicesBaseUrl),
-        "PolkadotData": PhalaMonitor.getPolkadot(PhalaServicesBaseUrl),
-        "Pruntime":PhalaMonitor.getPruntime(PhalaServicesBaseUrl),
+        "Pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
         "DockerContainers": PhalaMonitor.getPhalaServices(),
         "LinuxData": LinuxMonitor.getLinuxData(),
-        "Gas": gas
+        
 
     } 
 
     print(result)
 
     data_json = json.dumps(result)
-    url = PhalaServiceUrl + "/worker/updateWorker"
-    headers = {'Content-type': 'application/json','monitor_id':CyberJunglePhalaAccount,'monitor_key':CyberJunglePhalaKey} 
+    url = monitorUrl + "/worker/updateWorker"
+    headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)
         result = r.json()
@@ -75,5 +61,5 @@ while True:
         khala = {}
 
 
-    time.sleep(UpdateInterval)
+    time.sleep(interval)
     

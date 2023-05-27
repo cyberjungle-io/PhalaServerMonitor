@@ -24,10 +24,14 @@ while True:
     
     result = {
         "monitorType": monitorType,
-        "HostName": LinuxMonitor.getHostName(),
-        "Pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
-        "DockerContainers": PhalaMonitor.getPhalaServices(),
-        "LinuxData": LinuxMonitor.getLinuxData(),
+        "serviceName": serviceName,
+        "interval": interval,
+        "org_id" : monitorKey,
+        "nodeBaseUrl": nodeBaseUrl,
+        "hostName": LinuxMonitor.getHostName(),
+        "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
+        "dockerContainers": PhalaMonitor.getPhalaServices(),
+        "linuxData": LinuxMonitor.getLinuxData(),
         
 
     } 

@@ -28,6 +28,7 @@ while True:
         "interval": interval,
         "org_id" : monitorKey,
         "nodeBaseUrl": nodeBaseUrl,
+        "updateTime": time.time(),
         "hostName": LinuxMonitor.getHostName(),
         "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
         "dockerContainers": PhalaMonitor.getPhalaServices(),

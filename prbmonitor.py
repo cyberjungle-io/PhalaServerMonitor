@@ -19,7 +19,7 @@ monitorUrl = phalaConfig["monitorUrl"]
 monitorKey = phalaConfig["monitorKey"]
 interval = phalaConfig["interval"]
 nodeBaseUrl = phalaConfig["nodeBaseUrl"]
-gasAccount = phalaConfig["gasAccount"]
+
 
 
 while True:
@@ -34,7 +34,6 @@ while True:
         "hostName": LinuxMonitor.getHostName(),
         "phalaData": PhalaMonitor.getPhala(nodeBaseUrl),
         "polkadotData": PhalaMonitor.getPolkadot(nodeBaseUrl),  
-        "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
         "dockerContainers": PhalaMonitor.getPhalaServices(),
         "linuxData": LinuxMonitor.getLinuxData(),
         
@@ -44,7 +43,7 @@ while True:
     print(result)
 
     data_json = json.dumps(result)
-    url = monitorUrl + "/worker/updateSoloWorker"
+    url = monitorUrl + "/worker/updatePrb"
     headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)

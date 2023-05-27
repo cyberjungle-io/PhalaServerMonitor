@@ -4,6 +4,7 @@ import LinuxMonitor
 import PhalaMonitor
 import PhalaBlockChain
 import time
+import math
 import ExecCmd
 
 
@@ -28,7 +29,7 @@ while True:
         "interval": interval,
         "org_id" : monitorKey,
         "nodeBaseUrl": nodeBaseUrl,
-        "updateTime": time.time(),
+        "updateTime": math.trunc(time.time()*1000),
         "hostName": LinuxMonitor.getHostName(),
         "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
         "dockerContainers": PhalaMonitor.getPhalaServices(),

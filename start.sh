@@ -6,7 +6,7 @@ monitor_type=$(jq -r '.monitorType' "$config_file")
 
 # Check the monitorType value and run the appropriate script using nohup
 if [ "$monitor_type" = "solo" ]; then
-    nohup python3 Monitor.py >/dev/null 2>&1 &
+    nohup python3 solomonitor.py >/dev/null 2>&1 &
 elif [ "$monitor_type" = "prbworker" ]; then
     nohup python3 w.py >/dev/null 2>&1 &
 elif [ "$monitor_type" = "prb" ]; then

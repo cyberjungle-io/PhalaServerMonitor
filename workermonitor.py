@@ -35,7 +35,7 @@ while True:
     print(result)
 
     data_json = json.dumps(result)
-    url = monitorUrl + "/worker/updateWorker"
+    url = monitorUrl + "/worker/updatePrbWorker"
     headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)

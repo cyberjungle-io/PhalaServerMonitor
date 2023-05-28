@@ -1,4 +1,5 @@
 import requests
+import os
 import json
 import LinuxMonitor
 import PhalaMonitor
@@ -21,6 +22,39 @@ interval = phalaConfig["interval"]
 nodeBaseUrl = phalaConfig["nodeBaseUrl"]
 gasAccount = phalaConfig["gasAccount"]
 
+#pull Env Variables from the Solo Miner.
+home_dir = os.path.expanduser("~")
+file_path = os.path.join(home_dir, 'solo-mining-scripts-main/.env')
+with open(file_path, 'r') as file:
+    # Initialize variables
+    cores = None
+    gas_account_address = None
+    operator = None
+    phala_model = None
+
+    # Iterate over each line in the file
+    for line in file:
+        # Split the line by '=' to separate the variable name and value
+        variable, value = line.strip().split('=')
+
+        # Check if the variable is one of the desired ones
+        if variable == 'CORES':
+            cores = value
+        elif variable == 'GAS_ACCOUNT_ADDRESS':
+            gas_account_address = value
+        elif variable == 'OPERATOR':
+            operator = value
+        elif variable == 'PHALA_MODEL':
+            phala_model = value
+
+soloEnv = {
+     "cores": cores,
+     "gasAccount": gas_account_address,
+     "operator": operator,
+     "phalaModel":phala_model
+
+}
+
 
 while True:
     
@@ -37,6 +71,7 @@ while True:
         "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
         "dockerContainers": PhalaMonitor.getPhalaServices(),
         "linuxData": LinuxMonitor.getLinuxData(),
+        "soloEnv": soloEnv
         
 
     } 

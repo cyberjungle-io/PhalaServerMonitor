@@ -100,41 +100,6 @@ config = {
 }
 
 # Additional data collection for solo monitor type
-if monitor_type == "solo":
-    node_base_url = input("Enter the node base URL (default: {}): ".format(config.get('nodeBaseUrl', 'http://localhost'))) or config.get('nodeBaseUrl', 'http://localhost')
-    gas_account = input("Enter the gas account (default: {}): ".format(config.get('gasAccount', ''))) or config.get('gasAccount')
-
-    if gas_account:
-        validation_url = monitor_url.rstrip('/') + '/servermonitor/checkAccount'
-        payload = {
-            'accountId': gas_account
-        }
-        try:
-            response = requests.post(validation_url, json=payload)
-            response.raise_for_status()
-            response_data = response.json()
-            is_valid_account = response_data.get('isValidAccount', False)
-
-            while not is_valid_account:
-                print("Invalid gas account. Please enter a valid account.")
-                gas_account = input("Enter the gas account (default: {}): ".format(config.get('gasAccount', ''))) or config.get('gasAccount')
-                payload['accountId'] = gas_account
-                response = requests.post(validation_url, json=payload)
-                response.raise_for_status()
-                response_data = response.json()
-                is_valid_account = response_data.get('isValidAccount', False)
-
-            pha_amount = response_data.get('value')
-            if is_valid_account and pha_amount:
-                print("Gas account is valid.")
-                print("PHA amount: {}".format(pha_amount))
-
-        except requests.exceptions.RequestException as e:
-            print("Error occurred while validating gas account:", e)
-            gas_account = None
-
-    config["nodeBaseUrl"] = node_base_url
-    config["gasAccount"] = gas_account
 
 
 # Save the configuration to a JSON file

@@ -34,7 +34,7 @@ while True:
         "hostName": LinuxMonitor.getHostName(),
         "phalaData": PhalaMonitor.getPhala(nodeBaseUrl),
         "polkadotData": PhalaMonitor.getPolkadot(nodeBaseUrl),  
-        "dockerContainers": PhalaMonitor.getPhalaServices(),
+        "dockerContainers": LinuxMonitor.getDockerList(),
         "linuxData": LinuxMonitor.getLinuxData(),
         
 

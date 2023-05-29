@@ -5,6 +5,21 @@ import json
 import platform
 import time
 import socket
+import docker
+
+def getDockerList():
+    client = docker.from_env()
+
+    instances = []
+
+    for container in client.containers.list():
+        tinst = {
+            "name": container.name,
+            "status": container.status
+        }
+        
+        instances.append(tinst)
+    return instances
 
 def getIpAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

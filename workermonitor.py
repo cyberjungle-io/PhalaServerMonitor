@@ -32,7 +32,7 @@ while True:
         "updateTime": math.trunc(time.time()*1000),
         "hostName": LinuxMonitor.getHostName(),
         "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
-        "dockerContainers": PhalaMonitor.getPhalaServices(),
+        "dockerContainers": LinuxMonitor.getDockerList(),
         "linuxData": LinuxMonitor.getLinuxData(),
         
 

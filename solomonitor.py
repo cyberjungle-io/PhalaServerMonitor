@@ -69,7 +69,7 @@ while True:
         "phalaData": PhalaMonitor.getPhala(nodeBaseUrl),
         "polkadotData": PhalaMonitor.getPolkadot(nodeBaseUrl),  
         "pruntime":PhalaMonitor.getPruntime(nodeBaseUrl),
-        "dockerContainers": PhalaMonitor.getPhalaServices(),
+        "dockerContainers": LinuxMonitor.getDockerList(),
         "linuxData": LinuxMonitor.getLinuxData(),
         "soloEnv": soloEnv
         

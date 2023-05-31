@@ -87,6 +87,7 @@ while True:
         print(result)
        # khala = r.json()["result"]
         for cmd in result:
+            print(cmd)
             if cmd["command"] == "update phala":
                 ExecCmdSolo.SendPhalaUpdate()
 

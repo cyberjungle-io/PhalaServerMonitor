@@ -20,7 +20,7 @@ monitorUrl = phalaConfig["monitorUrl"]
 monitorKey = phalaConfig["monitorKey"]
 interval = phalaConfig["interval"]
 nodeBaseUrl = phalaConfig["nodeBaseUrl"]
-gasAccount = phalaConfig["gasAccount"]
+
 
 #pull Env Variables from the Solo Miner.
 home_dir = os.path.expanduser("~")

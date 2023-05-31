@@ -6,7 +6,7 @@ import PhalaMonitor
 import PhalaBlockChain
 import time
 import math
-import ExecCmd
+import ExecCmdSolo
 
 
 with open("config.json") as file:
@@ -54,7 +54,7 @@ soloEnv = {
      "phalaModel":phala_model
 
 }
-
+commandResult = []
 
 while True:
     
@@ -86,20 +86,21 @@ while True:
         result = r.json()
         print(result)
        # khala = r.json()["result"]
-        if result["send_update_command"]:
-            ExecCmd.SendPhalaUpdate()
+        for cmd in result:
+            if cmd["command"] == "update phala":
+                ExecCmdSolo.SendPhalaUpdate()
 
-        if result["send_restart_command"]:
-            ExecCmd.SendPhalaRestart()
+            if cmd["command"] == "restart phala":
+                ExecCmdSolo.SendPhalaRestart()
 
-        if result["send_stop_command"]:
-                ExecCmd.SendPhalaStop()
+            if cmd["command"] == "stop phala":
+                    ExecCmdSolo.SendPhalaStop()
 
-        if result["send_start_command"]:
-                ExecCmd.SendPhalaStart()
+            if cmd["command"] == "start phala":
+                    ExecCmdSolo.SendPhalaStart()
 
-        if result["send_reboot"]:
-                print("send_reboot")
+            if cmd["send_reboot"]:
+                    print("send_reboot")
        
     except:
         khala = {}

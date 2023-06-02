@@ -119,7 +119,8 @@ while True:
             url = monitorUrl + "/worker/saveWorkerLog"
             rc = requests.post(url, data=data_json, headers=headers,timeout=30)
         
-    except:
+    except Exception as e:
+        print(e)
         khala = {}
 
 

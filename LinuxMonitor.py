@@ -47,7 +47,7 @@ def get_docker_logs(docker_compose_path,service_name,num_logs):
             
             
             # Remove special formatting and escape sequences from the message
-            line = re.sub(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])', '', message)
+            line = re.sub(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])', '', line)
             
             
             # Add the log entry to the list

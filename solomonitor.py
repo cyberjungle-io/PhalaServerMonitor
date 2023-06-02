@@ -113,10 +113,11 @@ while True:
             if cmd["phala logs"]:
                     logdata["phalaStatus"] = result
 
-
+            
             data_json = json.dumps(logdata)
+            print(data_json)
             url = monitorUrl + "/worker/saveWorkerLog"
-            r = requests.post(url, data=data_json, headers=headers,timeout=30)
+            rc = requests.post(url, data=data_json, headers=headers,timeout=30)
         
     except:
         khala = {}

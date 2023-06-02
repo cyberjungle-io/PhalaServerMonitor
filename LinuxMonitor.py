@@ -6,6 +6,7 @@ import platform
 import time
 import socket
 import docker
+import re
 
 def getDockerList():
     client = docker.from_env()
@@ -47,12 +48,16 @@ def get_docker_logs(docker_compose_path,service_name,num_logs):
             # Split the log line into timestamp and message
             timestamp, message = line.split(' ', 1)
             
+            # Remove special formatting and escape sequences from the message
+            message = re.sub(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])', '', message)
+            
             # Create a dictionary for the log entry
             log_entry = {'timestamp': timestamp, 'message': message}
             
             # Add the log entry to the list
             log_entries.append(log_entry)
 
+        
         
         return log_entries
     except subprocess.CalledProcessError as e:

@@ -29,9 +29,34 @@ def get_docker_logs(docker_compose_path,service_name,num_logs):
     docker_command = f'docker-compose -f {docker_compose_path} logs --tail={num_logs} {service_name}'
 
     try:
-        # Execute the Docker command
+        # Execute the Docker command and capture the output
         logs = subprocess.check_output(docker_command, shell=True, universal_newlines=True)
-        return logs
+        
+        # Split the logs by newline character
+        log_lines = logs.split('\n')
+
+        # Create a list to store log entries
+        log_entries = []
+        
+        # Process each log line
+        for line in log_lines:
+            # Skip empty lines
+            if line.strip() == '':
+                continue
+            
+            # Split the log line into timestamp and message
+            timestamp, message = line.split(' ', 1)
+            
+            # Create a dictionary for the log entry
+            log_entry = {'timestamp': timestamp, 'message': message}
+            
+            # Add the log entry to the list
+            log_entries.append(log_entry)
+
+        # Convert the log entries to JSON format
+        json_logs = json.dumps(log_entries, indent=4)
+        
+        return json_logs
     except subprocess.CalledProcessError as e:
         print(f'Error retrieving Docker logs: {e}')
         return None

@@ -108,10 +108,9 @@ while True:
             if cmd["command"] == "start phala":
                     ExecCmdSolo.SendPhalaStart()
 
-            if cmd["send_reboot"]:
-                    print("send_reboot")
-            #if cmd["phala logs"]:
-            #        logdata["phalaStatus"] = result
+            
+            if cmd["phala logs"]:
+                    logdata["phalaStatus"] = result
 
             
             data_json = json.dumps(logdata)

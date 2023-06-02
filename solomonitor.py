@@ -93,7 +93,7 @@ while True:
                  "monitorType": monitorType,
                  "serviceName": serviceName,
                  "org_id" : monitorKey,
-                 "timestamp":math.trunc(time.time()*1000)
+                 "timestamp": math.trunc(time.time()*1000)
             }
             if cmd["command"] == "update phala":
                 ExecCmdSolo.SendPhalaUpdate()
@@ -110,8 +110,8 @@ while True:
 
             if cmd["send_reboot"]:
                     print("send_reboot")
-            if cmd["phala logs"]:
-                    logdata["phalaStatus"] = result
+            #if cmd["phala logs"]:
+            #        logdata["phalaStatus"] = result
 
             
             data_json = json.dumps(logdata)

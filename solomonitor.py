@@ -111,6 +111,12 @@ while True:
             
             if cmd["command"] == "phala logs":
                     logdata["phalaStatus"] = result
+                    tlogs = {
+                         "phala-pherry": LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pherry",100),
+                         "phala-pruntime":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pruntime",100),
+                         "phala-node":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-node",100),
+                    }
+                    logdata["dockerLogs"] = tlogs
 
             
             data_json = json.dumps(logdata)

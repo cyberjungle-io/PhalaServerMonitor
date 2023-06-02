@@ -20,6 +20,21 @@ def getDockerList():
         
         instances.append(tinst)
     return instances
+import subprocess
+
+def get_docker_logs(docker_compose_path,service_name,num_logs):
+    
+
+    # Build the Docker command to retrieve logs
+    docker_command = f'docker-compose -f {docker_compose_path} logs --tail={num_logs} {service_name}'
+
+    try:
+        # Execute the Docker command
+        logs = subprocess.check_output(docker_command, shell=True, universal_newlines=True)
+        return logs
+    except subprocess.CalledProcessError as e:
+        print(f'Error retrieving Docker logs: {e}')
+        return None
 
 def getIpAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

@@ -103,7 +103,7 @@ while True:
                 
 
             if cmd["command"] == "autorestart phala":
-                ExecCmdSolo.SendPhalaRestart()
+                
                 logdata["phalaStatus"] = result
                 tlogs = {
                          "phala-pherry": LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pherry",100),
@@ -113,6 +113,7 @@ while True:
                 if soloEnv["phalaModel"] == "PRUNE":
                          tlogs["phala-headers-cache"] = LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-headers-cache",100)
                 logdata["dockerLogs"] = tlogs
+                ExecCmdSolo.SendPhalaRestart()
 
             if cmd["command"] == "stop phala":
                     ExecCmdSolo.SendPhalaStop()

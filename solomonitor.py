@@ -83,10 +83,10 @@ while True:
     headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)
-        result = r.json()
-        print(result)
+        rest_result = r.json()
+        print(rest_result)
        # khala = r.json()["result"]
-        for cmd in result["commands"]:
+        for cmd in rest_result["commands"]:
             print(cmd["command"])
             logdata = {
                  "command": cmd["command"],

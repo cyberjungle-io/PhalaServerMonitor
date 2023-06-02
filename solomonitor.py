@@ -88,11 +88,19 @@ while True:
        # khala = r.json()["result"]
         for cmd in result["commands"]:
             print(cmd["command"])
+            logdata = {
+                 "command": cmd["command"],
+                 "monitorType": monitorType,
+                 "serviceName": serviceName,
+                 "org_id" : monitorKey,
+                 "timestamp":math.trunc(time.time()*1000)
+            }
             if cmd["command"] == "update phala":
                 ExecCmdSolo.SendPhalaUpdate()
 
             if cmd["command"] == "restart phala":
                 ExecCmdSolo.SendPhalaRestart()
+                logdata["phalaStatus"] = result
 
             if cmd["command"] == "stop phala":
                     ExecCmdSolo.SendPhalaStop()
@@ -102,7 +110,14 @@ while True:
 
             if cmd["send_reboot"]:
                     print("send_reboot")
-       
+            if cmd["phala logs"]:
+                    logdata["phalaStatus"] = result
+
+
+            data_json = json.dumps(logdata)
+            url = monitorUrl + "/worker/saveWorkerLog"
+            r = requests.post(url, data=data_json, headers=headers,timeout=30)
+        
     except:
         khala = {}
 

@@ -46,7 +46,10 @@ def get_docker_logs(docker_compose_path,service_name,num_logs):
                 continue
             
             # Split the log line into timestamp and message
-            svrs, message = line.split('|', 1)
+            try:
+                svrs, message = line.split('|', 1)
+            except:
+                message = line
             
             # Remove special formatting and escape sequences from the message
             message = re.sub(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])', '', message)

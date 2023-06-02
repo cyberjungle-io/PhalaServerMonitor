@@ -109,7 +109,7 @@ while True:
                     ExecCmdSolo.SendPhalaStart()
 
             
-            if cmd["phala logs"]:
+            if cmd["command"] == "phala logs":
                     logdata["phalaStatus"] = result
 
             

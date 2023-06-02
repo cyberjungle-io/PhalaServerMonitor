@@ -110,6 +110,8 @@ while True:
                          "phala-pruntime":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pruntime",100),
                          "phala-node":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-node",100),
                     }
+                if soloEnv["phalaModel"] == "prune":
+                         tlogs["phala-headers-cache"] = LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-headers-cache",100)
                 logdata["dockerLogs"] = tlogs
 
             if cmd["command"] == "stop phala":
@@ -126,6 +128,8 @@ while True:
                          "phala-pruntime":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pruntime",100),
                          "phala-node":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-node",100),
                     }
+                    if soloEnv["phalaModel"] == "prune":
+                         tlogs["phala-headers-cache"] = LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-headers-cache",100)
                     logdata["dockerLogs"] = tlogs
 
             

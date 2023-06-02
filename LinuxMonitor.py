@@ -53,10 +53,8 @@ def get_docker_logs(docker_compose_path,service_name,num_logs):
             # Add the log entry to the list
             log_entries.append(log_entry)
 
-        # Convert the log entries to JSON format
-        json_logs = json.dumps(log_entries, indent=4)
         
-        return json_logs
+        return log_entries
     except subprocess.CalledProcessError as e:
         print(f'Error retrieving Docker logs: {e}')
         return None

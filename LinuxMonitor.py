@@ -26,10 +26,10 @@ import subprocess
 def get_docker_logs(docker_compose_path,service_name,num_logs):
     
 
-    # Build the Docker command to retrieve logs
-    docker_command = f'docker-compose -f {docker_compose_path} logs --tail={num_logs} {service_name}'
+    try:# Build the Docker command to retrieve logs
+        docker_command = f'docker-compose -f {docker_compose_path} logs --tail={num_logs} {service_name}'
 
-    try:
+    
         # Execute the Docker command and capture the output
         logs = subprocess.check_output(docker_command, shell=True, universal_newlines=True)
         

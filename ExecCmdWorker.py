@@ -23,4 +23,4 @@ def SendPhalaStop():
 
 
 
-SendPhalaStop()
+SendPhalaStart()

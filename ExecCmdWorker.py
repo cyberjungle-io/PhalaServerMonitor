@@ -19,6 +19,8 @@ def SendPhalaStart():
 def SendPhalaStop():
     s = subprocess.call("docker-compose -f /home/oak/worker/docker-compose.yml down", shell = True)
 
+def UpdateMonitor():
+    s = subprocess.call("./UpdateMonitor.sh", shell = True)
 
 
 

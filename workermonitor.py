@@ -20,8 +20,9 @@ monitorKey = phalaConfig["monitorKey"]
 interval = phalaConfig["interval"]
 nodeBaseUrl = phalaConfig["nodeBaseUrl"]
 
+doLoop = True
 
-while True:
+while doLoop:
     
     result = {
         "monitorType": monitorType,
@@ -78,6 +79,10 @@ while True:
 
             if cmd["command"] == "start phala":
                 ExecCmdWorker.SendPhalaStart()
+
+            if cmd["command"] == "update monitor":
+                ExecCmdWorker.UpdateMonitor()
+                doLoop = False
 
             
             if cmd["command"] == "phala logs":

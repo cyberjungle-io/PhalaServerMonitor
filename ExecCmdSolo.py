@@ -16,3 +16,6 @@ def SendPhalaStart():
 
 def SendPhalaStop():
     s = subprocess.call("phala stop", shell = True)
+
+def UpdateMonitor():
+    s = subprocess.call("./UpdateMonitor.sh", shell = True)

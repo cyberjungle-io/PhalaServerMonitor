@@ -121,6 +121,10 @@ while True:
             if cmd["command"] == "start phala":
                     ExecCmdSolo.SendPhalaStart()
 
+            if cmd["command"] == "update monitor":
+                ExecCmdSolo.UpdateMonitor()
+                doLoop = False
+
             
             if cmd["command"] == "phala logs":
                     logdata["phalaStatus"] = result

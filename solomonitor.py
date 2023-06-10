@@ -56,7 +56,9 @@ soloEnv = {
 }
 commandResult = []
 
-while True:
+doLoop = True
+
+while doLoop:
     
     result = {
         "monitorType": monitorType,

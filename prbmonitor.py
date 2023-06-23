@@ -44,7 +44,7 @@ while doLoop:
     print(result)
 
     data_json = json.dumps(result)
-    url = monitorUrl + "/worker/updatePrbWorker"
+    url = monitorUrl + "/worker/updatePrb"
     headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
         r = requests.post(url, data=data_json, headers=headers,timeout=30)

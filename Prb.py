@@ -30,6 +30,7 @@ def getPrbWorkers(baseUrl):
             datetime_str = match.group(1)
             remainder_str = match.group(2)
             # Convert datetime string to datetime object
+            datetime_str = datetime_str[:-3] + datetime_str[-2:]
             dt = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S%z")
             # Convert datetime object to epoch time
             epoch_time = int(dt.timestamp())
@@ -44,5 +45,5 @@ def getPrbWorkers(baseUrl):
 
 
 
-#s = getPrbWorkers("http://10.2.3.2")
-#print(json.dumps(s, indent=4, sort_keys=True))
+s = getPrbWorkers("http://10.2.3.2")
+print(json.dumps(s, indent=4, sort_keys=True))

@@ -21,7 +21,7 @@ def getPrbWorkers(baseUrl):
     print(url)
     r = requests.post(url)
     workers = r.json()
-
+    print(json.dumps(workers, indent=4, sort_keys=True))
     for worker in workers["data"]["workerStates"]:
         worker.pop("minerInfoJson")
         worker['publicKey'] = "0x" + worker['publicKey']
@@ -37,7 +37,7 @@ def getPrbWorkers(baseUrl):
             worker["lastMessageTime"] = epoch_time * 1000
             worker["worker"]["stake"] = int(worker["worker"]["stake"]) / 1000000000000
         result.append(worker)
-        print(json.dumps(worker, indent=4, sort_keys=True))
+       # print(json.dumps(worker, indent=4, sort_keys=True))
     
     
     return result

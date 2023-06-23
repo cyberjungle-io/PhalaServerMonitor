@@ -18,6 +18,7 @@ def getPrbWorkers(baseUrl):
     result = []
     peerid = getPrbLifecyclePeerId(baseUrl)
     url = baseUrl + ":3000/ptp/proxy/" + peerid + "/GetWorkerStatus"
+    print(url)
     r = requests.post(url)
     workers = r.json()
 

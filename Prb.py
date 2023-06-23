@@ -43,5 +43,5 @@ def getPrbWorkers(baseUrl):
 
 
 
-s = getPrbWorkers("http://10.2.3.2")
-print(json.dumps(s, indent=4, sort_keys=True))
+#s = getPrbWorkers("http://10.2.3.2")
+#print(json.dumps(s, indent=4, sort_keys=True))

@@ -36,7 +36,7 @@ def getPrbWorkers(baseUrl):
             worker["lastMessageTime"] = epoch_time * 1000
             worker["worker"]["stake"] = int(worker["worker"]["stake"]) / 1000000000000
         result.append(worker)
-        #print(json.dumps(worker, indent=4, sort_keys=True))
+        print(json.dumps(worker, indent=4, sort_keys=True))
     
     
     return result

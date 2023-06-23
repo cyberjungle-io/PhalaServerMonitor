@@ -75,6 +75,7 @@ def getPhalaServices():
 
 
     return phala
+
 #print(getPhala("http://10.1.1.210"))
 #print(str(getPhalaServices()))
 

@@ -1,0 +1,17 @@
+version: "3"
+services:
+  phala-pruntime:
+    image: phalanetwork/phala-pruntime
+    restart: unless-stopped
+    container_name: phala-pruntime
+    hostname: phala-pruntime
+    ports:
+     - "8000:8000"
+    devices:
+     - /dev/sgx_enclave:/dev/sgx/enclave
+     - /dev/sgx_provision:/dev/sgx/provision
+    environment:
+     - EXTRA_OPTS=--cores=3
+     - ROCKET_ADDRESS=0.0.0.0
+    volumes:
+     - ./data/prb1:/root/data

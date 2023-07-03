@@ -24,7 +24,10 @@ def getPrbWorkers(baseUrl):
     #print(json.dumps(workers, indent=4, sort_keys=True))
     for worker in workers["data"]["workerStates"]:
         worker.pop("minerInfoJson")
-        worker['publicKey'] = "0x" + worker['publicKey']
+        if "publicKey" in worker:
+            worker['publicKey'] = "0x" + worker['publicKey']
+        else:
+            worker['publicKey'] = ""
         match = re.search(r'\[(.*?)\](.*)', worker["lastMessage"])
         if match:
             datetime_str = match.group(1)
@@ -45,5 +48,5 @@ def getPrbWorkers(baseUrl):
 
 
 
-#s = getPrbWorkers("http://10.2.3.2")
-#print(json.dumps(s, indent=4, sort_keys=True))
+s = getPrbWorkers("http://10.2.3.2")
+print(json.dumps(s, indent=4, sort_keys=True))

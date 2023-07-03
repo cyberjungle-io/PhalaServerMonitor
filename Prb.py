@@ -18,7 +18,7 @@ def getPrbWorkers(baseUrl):
     result = []
     peerid = getPrbLifecyclePeerId(baseUrl)
     url = baseUrl + ":3000/ptp/proxy/" + peerid + "/GetWorkerStatus"
-    print(url)
+    #print(url)
     r = requests.post(url)
     workers = r.json()
     #print(json.dumps(workers, indent=4, sort_keys=True))
@@ -41,12 +41,12 @@ def getPrbWorkers(baseUrl):
             worker["lastMessageTime"] = epoch_time * 1000
             worker["worker"]["stake"] = int(worker["worker"]["stake"]) / 1000000000000
         result.append(worker)
-        print(json.dumps(worker, indent=4, sort_keys=True))
+        #print(json.dumps(worker, indent=4, sort_keys=True))
     
     
     return result
 
 
 
-s = getPrbWorkers("http://10.2.3.2")
-print(json.dumps(s, indent=4, sort_keys=True))
+#s = getPrbWorkers("http://10.2.3.2")
+#print(json.dumps(s, indent=4, sort_keys=True))

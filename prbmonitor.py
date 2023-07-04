@@ -109,7 +109,7 @@ while doLoop:
                 logdata["phalaStatus"] = result
                 tlogs = {
                         "lifecycle":LinuxMonitor.get_docker_logs('~/lifecycle/docker-compose.yml',"lifecycle",100),
-                        "redis":LinuxMonitor.get_docker_logs('~/lifecycle/docker-compose.yml',"redis_q",100),
+                        "redis":LinuxMonitor.get_docker_logs('~/lifecycle/docker-compose.yml',"redis",100),
                         "data_provider":LinuxMonitor.get_docker_logs('~/provider/docker-compose.yml',"data_provider",100),
                         "monitor":LinuxMonitor.get_docker_logs('~/provider/docker-compose.yml',"monitor",100),
                         "node":LinuxMonitor.get_docker_logs('~/node/docker-compose.yml',"node",100),

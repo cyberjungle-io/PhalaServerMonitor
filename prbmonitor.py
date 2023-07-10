@@ -101,9 +101,6 @@ while doLoop:
             if cmd["command"] == "restart phala":
                 ExecCmdPrb.SendPhalaRestart()
                 
-
-            
-
             
             if cmd["command"] == "prb logs":
                 logdata["phalaStatus"] = result
@@ -115,7 +112,8 @@ while doLoop:
                         "node":LinuxMonitor.get_docker_logs('~/node/docker-compose.yml',"node",100),
                 }
                 logdata["dockerLogs"] = tlogs
-
+            if cmd["command"].find("restartprbworker") >=0:
+                Prb.restartPbrWorkers(nodeBaseUrl,cmd["command"].split("|")[1])
             
             data_json = json.dumps(logdata)
             print(data_json)

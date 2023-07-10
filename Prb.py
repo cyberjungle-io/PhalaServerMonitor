@@ -46,7 +46,24 @@ def getPrbWorkers(baseUrl):
     
     return result
 
+def restartPbrWorkers(baseUrl,uuid):
+    result = []
+    #'0b1ca286-bb28-457a-92ce-6a996067ee27'
+    peerid = getPrbLifecyclePeerId(baseUrl)
+    url = baseUrl + ":3000/ptp/proxy/" + peerid + "/RestartWorker"
+    #print(url)
+    dta = {'ids': [uuid]}
+    
+    dtajson = json.dumps(dta)
+    print(dtajson)
+    r = requests.post(url,data=dtajson,headers={'Content-type': 'application/json'})
+    worker = r.json()
+    
+    print(json.dumps(worker, indent=4, sort_keys=True))
+    
+    
+    return result
 
 
-#s = getPrbWorkers("http://10.2.3.2")
+s = restartPbrWorkers("http://10.2.3.2","0b1ca286-bb28-457a-92ce-6a996067ee27")
 #print(json.dumps(s, indent=4, sort_keys=True))

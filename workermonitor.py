@@ -88,7 +88,7 @@ while doLoop:
             if cmd["command"] == "phala logs":
                 logdata["phalaStatus"] = result
                 tlogs = {
-                        "phala-pruntime":LinuxMonitor.get_docker_logs('~/solo-mining-scripts-main/docker-compose.yml',"phala-pruntime",100),
+                        "phala-pruntime":LinuxMonitor.get_docker_logs('~/worker/docker-compose.yml',"phala-pruntime",100),
                 }
                 logdata["dockerLogs"] = tlogs
 

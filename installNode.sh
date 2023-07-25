@@ -174,4 +174,4 @@ phala_scripts_install_otherdependencies node
 
 
 mkdir ~/node
-cp node-docker-compose.yml ~/worker/docker-compose.yml
+cp node-docker-compose.yml ~/node/docker-compose.yml

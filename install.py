@@ -10,7 +10,7 @@ def validate_url(url):
 
 # Function to validate the monitor type
 def validate_monitor_type(monitor_type):
-    valid_types = ['solo', 'prb', 'prbworker']
+    valid_types = ['solo', 'prb', 'prbworker, phalanode']
     return monitor_type in valid_types
 
 # Function to validate the interval
@@ -39,8 +39,8 @@ if os.path.exists('config.json'):
 monitor_type = input("Enter the monitor type (solo/prb/prbworker) (default: {}): ".format(config.get('monitorType', ''))) or config.get('monitorType')
 
 while monitor_type is None or not validate_monitor_type(monitor_type):
-    print("Invalid monitor type. Please enter one of the following: solo, prb, prbworker")
-    monitor_type = input("Enter the monitor type (solo/prb/prbworker) (default: {}): ".format(config.get('monitorType', ''))) or config.get('monitorType')
+    print("Invalid monitor type. Please enter one of the following: solo, prb, prbworker, phalanode")
+    monitor_type = input("Enter the monitor type (solo/prb/prbworker/phalanode) (default: {}): ".format(config.get('monitorType', ''))) or config.get('monitorType')
 
 # Prompt for service name
 service_name = input("Enter the service name (default: {}): ".format(config.get('serviceName', get_default_host_name()))) or config.get('serviceName', get_default_host_name())

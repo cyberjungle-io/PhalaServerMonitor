@@ -11,6 +11,8 @@ elif [ "$monitor_type" = "prbworker" ]; then
     nohup python3 workermonitor.py &
 elif [ "$monitor_type" = "prb" ]; then
     nohup python3 prbmonitor.py &
+elif [ "$monitor_type" = "phalanode" ]; then
+    nohup python3 phalanodemonitor.py &
 else
     echo "Invalid monitorType value in config.json"
     exit 1

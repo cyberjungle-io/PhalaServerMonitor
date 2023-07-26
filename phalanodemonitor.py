@@ -36,8 +36,7 @@ while doLoop:
         "phalaData": PhalaMonitor.getPhala(nodeBaseUrl),
         "polkadotData": PhalaMonitor.getPolkadot(nodeBaseUrl), 
         "dockerContainers": LinuxMonitor.getDockerList(),
-        "linuxData": LinuxMonitor.getLinuxData(),
-        "prbData": Prb.getPrbWorkers(nodeBaseUrl),
+        "linuxData": LinuxMonitor.getLinuxData()
         
 
     } 
@@ -75,7 +74,7 @@ while doLoop:
           
                 
             
-            if cmd["command"] == "prb logs":
+            if cmd["command"] == "phala logs":
                 logdata["phalaStatus"] = result
                 tlogs = {
                         

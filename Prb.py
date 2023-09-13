@@ -6,6 +6,7 @@ from datetime import datetime
 
  #get prb peers from /ptp/discover in the prb monitor service at 10.2.3.2:3000. 
 def getPrbLifecyclePeerId(baseUrl):
+    baseUrl = "http://localhost"
     url = baseUrl + ":3000/ptp/discover"
     r = requests.post(url)
     peers = r.json()

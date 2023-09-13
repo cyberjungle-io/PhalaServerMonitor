@@ -16,6 +16,7 @@ def getPrbLifecyclePeerId(baseUrl):
 
 # gets the peerid from getPrbLifecyclePeer, then using the peerid it gets the workers  from the ListWorker endpoint
 def getPrbWorkers(baseUrl):
+    baseUrl = "http://localhost"
     result = []
     peerid = getPrbLifecyclePeerId(baseUrl)
     url = baseUrl + ":3000/ptp/proxy/" + peerid + "/GetWorkerStatus"

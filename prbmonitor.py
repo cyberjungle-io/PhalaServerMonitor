@@ -121,7 +121,8 @@ while doLoop:
             rc = requests.post(url, data=data_json, headers=headers,timeout=30)
      
        
-    except:
+    except Exception as e:
+        print("An error occurred:", str(e))
         khala = {}
 
 

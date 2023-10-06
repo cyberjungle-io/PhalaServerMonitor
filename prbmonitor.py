@@ -42,7 +42,7 @@ while doLoop:
 
     } 
 
-    #print(result)
+    print(result)
 
     data_json = json.dumps(result)
     url = monitorUrl + "/worker/updatePrb"

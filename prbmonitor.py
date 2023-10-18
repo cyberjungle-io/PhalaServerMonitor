@@ -48,11 +48,11 @@ while doLoop:
     url = monitorUrl + "/worker/updatePrb"
     headers = {'Content-type': 'application/json','monitor_key':monitorKey} 
     try:
-        print("1")
+        
         r = requests.post(url, data=data_json, headers=headers,timeout=30)
         rest_result = r.json()
         print(rest_result)
-        print("2")
+        
        # khala = r.json()["result"]
         for cmd in rest_result:
             print("cmd in for loop: " + cmd["command"])
@@ -63,7 +63,7 @@ while doLoop:
                  "org_id" : monitorKey,
                  "timestamp": math.trunc(time.time()*1000)
             }
-            print("3")
+            
             if cmd["command"] == "stop lifecycle":
                 ExecCmdPrb.StopLifecycle()
             
@@ -104,7 +104,7 @@ while doLoop:
             if cmd["command"] == "restart phala":
                 ExecCmdPrb.SendPhalaRestart()
                 
-            print("4")
+            
             if cmd["command"] == "prb logs":
                 logdata["phalaStatus"] = result
                 tlogs = {
@@ -115,8 +115,7 @@ while doLoop:
                         "node":LinuxMonitor.get_docker_logs('~/node/docker-compose.yml',"node",100),
                 }
                 logdata["dockerLogs"] = tlogs
-            print("5")
-            print(cmd["command"].find("restartprbworker"))
+           
             if cmd["command"].find("restartprbworker") >=0:
                 print(cmd["command"].split("|")[1])
                 Prb.restartPbrWorkers(nodeBaseUrl,cmd["command"].split("|")[1])

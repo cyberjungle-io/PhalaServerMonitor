@@ -55,7 +55,7 @@ while doLoop:
         print("2")
        # khala = r.json()["result"]
         for cmd in rest_result["commands"]:
-            print("cmd in for loop: " + cmd["command"])
+            #print("cmd in for loop: " + cmd["command"])
             logdata = {
                  "command": cmd["command"],
                  "monitorType": monitorType,

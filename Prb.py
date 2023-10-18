@@ -24,27 +24,30 @@ def getPrbWorkers(baseUrl):
     r = requests.post(url)
     workers = r.json()
     #print(json.dumps(workers, indent=4, sort_keys=True))
-    for worker in workers["data"]["workerStates"]:
-        worker.pop("minerInfoJson")
-        if "publicKey" in worker:
-            worker['publicKey'] = "0x" + worker['publicKey']
-        else:
-            worker['publicKey'] = ""
-        match = re.search(r'\[(.*?)\](.*)', worker["lastMessage"])
-        if match:
-            datetime_str = match.group(1)
-            remainder_str = match.group(2)
-            # Convert datetime string to datetime object
-            datetime_str = datetime_str[:-3] + datetime_str[-2:]
-            dt = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S%z")
-            # Convert datetime object to epoch time
-            epoch_time = int(dt.timestamp())
-            worker["lastMessage"] = remainder_str.lstrip()
-            worker["lastMessageTime"] = epoch_time * 1000
-            worker["worker"]["stake"] = int(worker["worker"]["stake"]) / 1000000000000
-        result.append(worker)
-        #print(json.dumps(worker, indent=4, sort_keys=True))
-    
+    try:
+        for worker in workers["data"]["workerStates"]:
+            worker.pop("minerInfoJson")
+            if "publicKey" in worker:
+                worker['publicKey'] = "0x" + worker['publicKey']
+            else:
+                worker['publicKey'] = ""
+            match = re.search(r'\[(.*?)\](.*)', worker["lastMessage"])
+            if match:
+                datetime_str = match.group(1)
+                remainder_str = match.group(2)
+                # Convert datetime string to datetime object
+                datetime_str = datetime_str[:-3] + datetime_str[-2:]
+                dt = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S%z")
+                # Convert datetime object to epoch time
+                epoch_time = int(dt.timestamp())
+                worker["lastMessage"] = remainder_str.lstrip()
+                worker["lastMessageTime"] = epoch_time * 1000
+                worker["worker"]["stake"] = int(worker["worker"]["stake"]) / 1000000000000
+            result.append(worker)
+            #print(json.dumps(worker, indent=4, sort_keys=True))
+    except Exception as e:
+        print(e)
+        return []    
     
     return result
 

@@ -113,7 +113,9 @@ while doLoop:
                 }
                 logdata["dockerLogs"] = tlogs
             if cmd["command"].find("restartprbworker") >=0:
+                print(cmd["command"].split("|")[1])
                 Prb.restartPbrWorkers(nodeBaseUrl,cmd["command"].split("|")[1])
+
             
             data_json = json.dumps(logdata)
             print(data_json)

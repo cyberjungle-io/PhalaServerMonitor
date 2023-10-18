@@ -112,6 +112,7 @@ while doLoop:
                         "node":LinuxMonitor.get_docker_logs('~/node/docker-compose.yml',"node",100),
                 }
                 logdata["dockerLogs"] = tlogs
+            print(cmd["command"].find("restartprbworker"))
             if cmd["command"].find("restartprbworker") >=0:
                 print(cmd["command"].split("|")[1])
                 Prb.restartPbrWorkers(nodeBaseUrl,cmd["command"].split("|")[1])

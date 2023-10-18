@@ -57,7 +57,7 @@ while doLoop:
         for cmd in rest_result["commands"]:
             print("cmd in for loop: " + cmd)
             logdata = {
-                 "command": cmd["command"],
+                 "command": cmd,
                  "monitorType": monitorType,
                  "serviceName": serviceName,
                  "org_id" : monitorKey,

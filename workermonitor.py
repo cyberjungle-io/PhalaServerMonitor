@@ -62,6 +62,7 @@ while doLoop:
                 ExecCmdWorker.SendPhalaUpdate()
 
             if cmd["command"] == "restart phala":
+                print("restart phala")
                 ExecCmdWorker.SendPhalaRestart()
                 
 

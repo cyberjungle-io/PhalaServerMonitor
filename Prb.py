@@ -73,5 +73,5 @@ def restartPbrWorkers(baseUrl,uuid):
     return result
 
 
-#s = restartPbrWorkers("http://10.2.3.2","0b1ca286-bb28-457a-92ce-6a996067ee27")
+#s = restartPbrWorkers("http://10.2.3.27","0b1ca286-bb28-457a-92ce-6a996067ee27")
 #print(json.dumps(s, indent=4, sort_keys=True))
